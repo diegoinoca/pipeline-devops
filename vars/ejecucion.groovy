@@ -7,7 +7,7 @@ def call(){
         }
         parameters {
             choice( name:'compileTool', choices: ['Maven', 'Gradle'], description: 'Seleccione herramienta de compilacion' )
-            string( defaultValue: '', name: 'stage', trim: true )
+            string( defaultValue: '', name: 'stages', trim: true )
         }
         stages {
             stage("Pipeline"){
