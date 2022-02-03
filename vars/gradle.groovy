@@ -4,6 +4,8 @@
 	ejecucion.call()
 */
 def call(stages){
+    echo 'Stages a ejecutar :' + stages;
+    
     def listStagesOrder = [
         'build': 'stageCleanBuildTest',
         'sonar': 'stageSonar',
