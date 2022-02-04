@@ -5,11 +5,12 @@
 */
 def call(String pipelineType){
     figlet pipelineType
-    
     if (pipelineType == 'CI') {
+         echo 'Entro funcion CI'
         runCI()
     } else {
-       runCD()
+         echo 'Entro funcion CD'
+        runCD()
     }
 }
 
