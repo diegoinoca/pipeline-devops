@@ -18,11 +18,11 @@ def call(){
                         {
                             case 'Maven':
                                 figlet 'Ejecución con Maven'
-                                maven.call(verifyBranchName(), params.stages)
+                                maven.call(verifyBranchName())
                             break;
                             case 'Gradle':
                                 figlet 'Ejecución con Gradle'
-                                gradle.call(verifyBranchName(), params.stages)
+                                gradle.call(verifyBranchName())
                             break;
                         }
                     }
