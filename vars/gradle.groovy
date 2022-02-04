@@ -96,7 +96,6 @@ def stageCurlJar(){
 }
 
 def runCI(){
-    echo 'Entro funcion CI'
     stageCleanBuildTest()
     stageSonar()
     stageRunJar()
@@ -104,7 +103,6 @@ def runCI(){
 }
 
 def runCD(){
-    echo 'Entro funcion CD'
     stageDownloadNexus()
     stageRunJar()
     stageCurlJar()
