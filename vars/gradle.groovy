@@ -105,7 +105,6 @@ def runCI(){
 def runCD(){
     stageDownloadNexus()
     stageRunJar()
-    stageCurlJar()
     stageUploadNexus()
 }
 
