@@ -7,7 +7,6 @@ def call(String pipelineType){
     figlet pipelineType
     
     if (pipelineType == 'CI') {
-        echo 'El pipeline se ejecutará completo'
         runCI()
     } else {
        runCD()

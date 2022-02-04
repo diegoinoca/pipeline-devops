@@ -7,13 +7,13 @@ def call(){
         }
         parameters {
             choice( name:'compileTool', choices: ['Maven', 'Gradle'], description: 'Seleccione herramienta de compilacion' )
-            string( defaultValue: '', name: 'stages', trim: true )
         }
         stages {
             stage("Pipeline"){
                 steps {
                     script{
                     def ci_or_cd = verifyBranchName()
+                    figlet ci_or_cd;
                     switch(params.compileTool)
                         {
                             case 'Maven':
