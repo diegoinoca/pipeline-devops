@@ -6,10 +6,8 @@
 def call(String pipelineType){
     figlet pipelineType
     if (pipelineType == 'CI') {
-         echo 'Entro funcion CI'
         runCI()
     } else {
-         echo 'Entro funcion CD'
         runCD()
     }
 }
@@ -102,7 +100,6 @@ def runCI(){
     stageCleanBuildTest()
     stageSonar()
     stageRunJar()
-    stageCurlJar()
     stageUploadNexus()
 }
 
