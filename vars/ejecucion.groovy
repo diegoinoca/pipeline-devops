@@ -13,15 +13,16 @@ def call(){
             stage("Pipeline"){
                 steps {
                     script{
+                    def ci_or_cd = verifyBranchName()
                     switch(params.compileTool)
                         {
                             case 'Maven':
-                                //def ejecucion = load 'maven.groovy'
-                                maven.call(params.stages)
+                                figlet 'Ejecución con Maven'
+                                maven.call(verifyBranchName(), params.stages)
                             break;
                             case 'Gradle':
-                                //def ejecucion = load 'gradle.groovy'
-                                gradle.call(params.stages)
+                                figlet 'Ejecución con Gradle'
+                                gradle.call(verifyBranchName(), params.stages)
                             break;
                         }
                     }
@@ -38,4 +39,15 @@ def call(){
         }
     }
 }
+
+
+def verifyBranchName(){
+	if(env.GIT_BRANCH.contains('feature-') || env.GIT_BRANCH.contains('develop-')) {
+		return 'CI'
+	} else {
+		return 'CD'
+	}
+	return 
+}
+
 return this;

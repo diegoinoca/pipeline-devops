@@ -3,31 +3,14 @@
 	def ejecucion = load 'script.groovy'
 	ejecucion.call()
 */
-def call(stages){
-    def stagesList = stages.split(";")
-    def listStagesOrder = [
-        'build': 'stageCleanBuildTest',
-        'sonar': 'stageSonar',
-        'run_spring_curl': 'stageRunSpringCurl',
-        'upload_nexus': 'stageUploadNexus',
-        'download_nexus': 'stageDownloadNexus',
-        'run_jar': 'stageRunJar',
-        'curl_jar': 'stageCurlJar'
-    ]
+def call(String pipelineType){
+    figlet pipelineType
     
-    if (stages.isEmpty()) {
+    if (pipelineType == 'CI') {
         echo 'El pipeline se ejecutará completo'
-        allStages()
+        runCI()
     } else {
-        echo 'Stages a ejecutar :' + stages
-        listStagesOrder.each { stageName, stageFunction ->
-            stagesList.each{ stageToExecute ->//variable as param
-                if(stageName.equals(stageToExecute)){
-                echo 'Ejecutando ' + stageFunction
-                "${stageFunction}"()
-                }
-            }
-        }
+       runCD()
     }
 }
 
@@ -114,13 +97,19 @@ def stageCurlJar(){
     }
 }
 
-def allStages(){
+def runCI(){
     stageCleanBuildTest()
     stageSonar()
-    stageRunSpringCurl()
+    stageRunJar()
+    stageCurlJar()
     stageUploadNexus()
+}
+
+def runCD(){
     stageDownloadNexus()
     stageRunJar()
     stageCurlJar()
+    stageUploadNexus()
 }
+
 return this;
