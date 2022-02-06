@@ -13,7 +13,7 @@ def call(){
                 steps {
                     script{
                     def ci_or_cd = verifyBranchName()
-                    figlet ci_or_cd;
+                    figlet ci_or_cd
                     switch(params.compileTool)
                         {
                             case 'Maven':
